@@ -80,3 +80,25 @@
   background-color: black;
   height: 5%;
 }
+
+.dot {
+  position: absolute;
+  left: 35%;
+  top: 35%;
+  width: 25%;
+  height: 25%;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.power-pellet {
+  position: absolute;
+  left: 25%;
+  top: 25%;
+  width: 50%;
+  height: 50%;
+  border: 1px solid black;
+  background-color: gold;
+  border-radius: 50%;
+}
