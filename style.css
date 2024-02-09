@@ -106,3 +106,19 @@
   height: 100%;
   width: 100%;
 }
+
+.grid {
+  margin: auto;
+  padding-top: 40px;
+  justify-content: center;
+  display: grid;
+  cursor: grab;
+  background-color: black;
+  overflow: hidden;
+}
+
+.box {
+  font-size: 3rem;
+  text-align: center;
+  position: relative;
+}
