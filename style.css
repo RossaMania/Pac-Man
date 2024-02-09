@@ -60,3 +60,13 @@
   border-radius: 50%;
   background-color: yellow;
 }
+
+.eye {
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  height: 20%;
+  width: 20%;
+  border-radius: 50%;
+  background-color: black;
+}
