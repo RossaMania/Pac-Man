@@ -20,3 +20,32 @@
   background-color: green;
   z-index: 3;
 }
+
+.eyes {
+  position: absolute;
+  display: inline-block;
+  height: 30%;
+  width: 30%;
+  border-radius: 40%;
+  bottom: 40%;
+  background-color: whitesmoke;
+}
+
+.eyeleft {
+  left: 10%;
+}
+
+.eyeright {
+  right: 10%;
+}
+
+.eyes:after {
+  position: absolute;
+  bottom: 40%;
+  content: " ";
+  background-color: blue;
+  height: 50%;
+  width: 50%;
+  left: 20%;
+  border-radius: 40%;
+}
