@@ -122,3 +122,11 @@
   text-align: center;
   position: relative;
 }
+
+.scoreBoard {
+  background-color: black;
+  text-align: center;
+  font-size: 2rem;
+  color: white;
+  padding: 1.5rem;
+}
