@@ -78,5 +78,8 @@ createSquare = (val) => {
   myBoard.push(div);
   div.t = val; // set cell type value based on tempBoard array index value
   div.idVal = myBoard.length; // set cell id value based on myBoard array index
-  console.dir(div);
+  div.addEventListener(
+    "click", (e) => {
+      console.dir(div);
+    })
 };
