@@ -2,6 +2,13 @@ const board = ["pink", "blue", "green", "red", "purple", "orange"];
 
 const myBoard = [];
 
+const tempBoard = [
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1, 1, 1, 1,
+  1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2,
+  2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1, 1, 1, 1, 1, 3, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2,
+  2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
+];
+
 const ghosts = [];
 
 const g = {
@@ -27,5 +34,19 @@ document.addEventListener("DOMContentLoaded", () => {
   g.mouth = document.querySelector(".mouth"); // pacman child mouth element to change pacman direction
   g.ghost = document.querySelector(".ghost"); // ghost parent element object template
   g.ghost.style.display = "none"; // hide ghost element.
+  createGame(); // create game board
   console.log(g);
 });
+
+createGame = () => {
+  tempBoard.forEach((cell) => {
+    console.log(cell);
+    createSquare(cell);
+  });
+
+  for (let index = 0; index < g.size; index++) {
+    g.x += `${g.h}px `; // cell grid height
+  }
+  g.grid.style.gridTemplateColumns = g.x;
+  g.grid.style.gridTemplateRows = g.x;
+};
