@@ -45,7 +45,17 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(g);
 });
 
+createGhost = () => {
+  let newGhost = g.ghost.cloneNode(true);
+  console.log(newGhost);
+}
+
+
 createGame = () => {
+  for(let i=0; i<g.ghosts; i++){
+    createGhost();
+  }
+
   tempBoard.forEach((cell) => {
     console.log(cell);
     createSquare(cell);
