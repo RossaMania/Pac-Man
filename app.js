@@ -54,4 +54,19 @@ createGame = () => {
 createSquare = (val) => {
   const div = document.createElement("div");
   div.classList.add("box");
+  if (val == 1) {
+    div.classList.add("wall");
+  }
+  if (val == 2) {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    div.append(dot);
+  } // add dot to cell
+  if (val == 3) {
+    const dot = document.createElement("div");
+    dot.classList.add("power-pellet");
+    div.append(dot);
+  } // add power pellet to cell
+  g.grid.append(div);
+  myBoard.push(div);
 };
