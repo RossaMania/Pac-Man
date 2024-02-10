@@ -12,3 +12,14 @@ const g = {
   ghosts: 6,
   inplay: false,
 };
+
+const player = {
+  pos: 20,
+  speed: 4,
+  cool: 0,
+  pause: false,
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("Shall we play a game?");
+});
