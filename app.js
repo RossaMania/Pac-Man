@@ -3,10 +3,17 @@ const board = ["pink", "blue", "green", "red", "purple", "orange"];
 const myBoard = [];
 
 const tempBoard = [
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 3, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1, 1, 1, 1,
-  1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2,
-  2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 1, 1, 1, 1, 1, 3, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2,
-  2, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  1, 2, 3, 2, 2, 2, 2, 2, 2, 1,
+  1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+  1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
+  1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+  1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
+  1, 2, 1, 1, 1, 1, 1, 3, 2, 1,
+  1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
+  1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+  1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 ];
 
 const ghosts = [];
@@ -69,4 +76,7 @@ createSquare = (val) => {
   } // add power pellet to cell
   g.grid.append(div);
   myBoard.push(div);
+  div.t = val; // set cell type value based on tempBoard array index value
+  div.idVal = myBoard.length; // set cell id value based on myBoard array index
+  console.dir(div);
 };
