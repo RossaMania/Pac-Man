@@ -50,3 +50,8 @@ createGame = () => {
   g.grid.style.gridTemplateColumns = g.x;
   g.grid.style.gridTemplateRows = g.x;
 };
+
+createSquare = (val) => {
+  const div = document.createElement("div");
+  div.classList.add("box");
+};
