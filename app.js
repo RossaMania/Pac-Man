@@ -47,6 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
+  newGhost.pos = 15 + ghosts.length;
+  newGhost.style.display = "block";
+  newGhost.style.backgroundColor = board[ghosts.length];
+  ghosts.push(newGhost);
   console.log(newGhost);
 }
 
