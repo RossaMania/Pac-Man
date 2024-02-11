@@ -96,6 +96,17 @@ move = () => {
         myBoard[ghost.pos].append(ghost); // append ghost to cell
       });
       //Keyboard events to move pacman
+
+      if (player.tog) {
+
+        g.mouth.style.height = "30%";
+        player.tog = false;
+
+      } else {
+        g.mouth.style.height = "10%";
+        player.tog = true;
+      }
+
       let tempPos = player.pos; // current player position
 
       if (keyz.ArrowRight) {
