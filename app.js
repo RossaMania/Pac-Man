@@ -50,10 +50,17 @@ createGhost = () => {
   newGhost.pos = 15 + ghosts.length;
   newGhost.style.display = "block";
   newGhost.style.backgroundColor = board[ghosts.length];
+  newGhost.namer = board[ghosts.length] + "y";
   ghosts.push(newGhost);
   console.log(newGhost);
 }
 
+move = (e) => {
+  console.log(ghosts); // console log ghosts array of ghost objects
+  ghosts.forEach((ghost) => {
+    myBoard[ghost.pos].append(ghost); // append ghost to cell
+  });
+};
 
 createGame = () => {
   for(let i=0; i<g.ghosts; i++){
