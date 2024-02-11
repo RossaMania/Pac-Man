@@ -97,15 +97,7 @@ move = () => {
       });
       //Keyboard events to move pacman
 
-      if (player.tog) {
-
-        g.mouth.style.height = "30%";
-        player.tog = false;
-
-      } else {
-        g.mouth.style.height = "10%";
-        player.tog = true;
-      }
+      
 
       let tempPos = player.pos; // current player position
 
@@ -130,6 +122,20 @@ move = () => {
         console.log("dot!"); // console log dot
         myBoard[player.pos].innerHTML = ""; // remove dot from cell
         newPlace.t = 0; // dot is gone, set cell type value to 0
+      }
+
+      console.log(player.pos, tempPos); // console log future player position and current player position
+
+      if (player.pos != tempPos) {
+
+        if (player.tog) {
+          g.mouth.style.height = "30%";
+          player.tog = false;
+        } else {
+          g.mouth.style.height = "10%";
+          player.tog = true;
+        }
+
       }
 
       player.cool = player.speed; // set cooloff
