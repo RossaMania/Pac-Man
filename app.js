@@ -78,6 +78,8 @@ createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
   newGhost.pos = 11 + ghosts.length;
   newGhost.style.display = "block";
+  newGhost.counter = 0;
+  newGhost.dx = Math.floor(Math.random() * 4);
   newGhost.style.backgroundColor = board[ghosts.length];
   newGhost.namer = board[ghosts.length] + "y";
   ghosts.push(newGhost);
@@ -94,6 +96,10 @@ move = () => {
       //placement and movement of ghosts
       ghosts.forEach((ghost) => {
         myBoard[ghost.pos].append(ghost); // append ghost to cell
+        ghost.counter--; // decrement ghost counter
+        if (ghost.counter <= 0) { // check if ghost counter is less than or equal to 0
+          changeDir(ghost); // change ghost direction
+        }
       });
 
 
