@@ -51,7 +51,7 @@ document.addEventListener("keydown", (e) => {
 
 createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
-  newGhost.pos = 15 + ghosts.length;
+  newGhost.pos = 11 + ghosts.length;
   newGhost.style.display = "block";
   newGhost.style.backgroundColor = board[ghosts.length];
   newGhost.namer = board[ghosts.length] + "y";
