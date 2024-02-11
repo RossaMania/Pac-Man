@@ -60,6 +60,7 @@ document.addEventListener("keydown", (e) => {
   }
 
   if (!g.inplay && !player.pause) {
+    g.pacman.style.display = "block"; // show pacman element
     player.play = requestAnimationFrame(move);
     g.inplay = true;
   }
@@ -95,6 +96,8 @@ move = () => {
          myBoard[ghost.pos].append(ghost); // append ghost to cell
        });
        //Keyboard events to move pacman
+       let tempPos = player.pos; // current player position
+
        if (keyz.ArrowRight) {
          player.pos += 1;
        } else if (keyz.ArrowLeft) {
@@ -104,11 +107,15 @@ move = () => {
        } else if (keyz.ArrowDown) {
          player.pos += g.size;
        }
-    }
 
-  console.log(player.pos); // console log player position
+    player.cool = player.speed; // set cooloff
 
-  g.pacman.style.display = "block"; // show pacman element
+    let newPlace = myBoard[player.pos]; // future player position pacman is moving toward.
+
+    console.log(newPlace);
+
+  }
+
   myBoard[player.pos].append(g.pacman); // append pacman to cell
   player.play = requestAnimationFrame(move); // request animation frame
 }
