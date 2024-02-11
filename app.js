@@ -4,8 +4,8 @@ const myBoard = [];
 
 const tempBoard = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  1, 2, 3, 2, 2, 2, 2, 2, 2, 1,
-  1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+  1, 2, 3, 2, 2, 2, 2, 3, 2, 1,
+  1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
   1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
   1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
   1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
@@ -59,11 +59,12 @@ createGhost = () => {
   console.log(newGhost);
 }
 
-move = (e) => {
+move = () => {
   console.log(ghosts); // console log ghosts array of ghost objects
   ghosts.forEach((ghost) => {
     myBoard[ghost.pos].append(ghost); // append ghost to cell
   });
+  myBoard[player.pos].append(g.pacman); // append pacman to cell
 };
 
 createGame = () => {
