@@ -58,7 +58,12 @@ document.addEventListener("keydown", (e) => {
   if (e.code in keyz) {
     keyz[e.code] = true;
   }
-  player.play = requestAnimationFrame(move);
+
+  if (!g.inplay && !player.pause) {
+    player.play = requestAnimationFrame(move);
+    g.inplay = true;
+  }
+
 });
 
 document.addEventListener("keyup", (e) => {
@@ -87,13 +92,13 @@ move = () => {
     myBoard[ghost.pos].append(ghost); // append ghost to cell
   });
 
-  if(keyz.ArrowRight){
+  if (keyz.ArrowRight){
     player.pos += 1;
-  } else if(keyz.ArrowLeft){
+  } else if (keyz.ArrowLeft){
     player.pos -= 1;
-  } else if(keyz.ArrowUp){
+  } else if (keyz.ArrowUp){
     player.pos -= g.size;
-  } else if(keyz.ArrowDown){
+  } else if (keyz.ArrowDown){
     player.pos += g.size;
   }
 
