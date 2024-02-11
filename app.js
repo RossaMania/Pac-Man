@@ -115,6 +115,12 @@ move = () => {
         player.pos = tempPos; // set player position back to previous, current position
       }
 
+      if (newPlace.t == 2) {
+        console.log("dot!"); // console log dot
+        myBoard[player.pos].innerHTML = ""; // remove dot from cell
+        newPlace.t = 0; // dot is gone, set cell type value to 0
+      }
+
       player.cool = player.speed; // set cooloff
 
       console.log(newPlace.t); // console log future player position type value
