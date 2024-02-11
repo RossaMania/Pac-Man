@@ -97,14 +97,17 @@ move = () => {
       });
       //Keyboard events to move pacman
 
-      
 
       let tempPos = player.pos; // current player position
 
       if (keyz.ArrowRight) {
         player.pos += 1;
+        g.eye.style.left = "20%"; // move pacman eye to the right
+        g.mouth.style.left = "60%"; // move pacman mouth to the right
       } else if (keyz.ArrowLeft) {
         player.pos -= 1;
+        g.eye.style.left = "60%"; // move pacman eye to the left
+        g.mouth.style.left = "0%"; // move pacman mouth to the left
       } else if (keyz.ArrowUp) {
         player.pos -= g.size;
       } else if (keyz.ArrowDown) {
