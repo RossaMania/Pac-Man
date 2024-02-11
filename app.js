@@ -87,20 +87,24 @@ move = () => {
 
   if (g.inplay) {
 
-  console.log(ghosts); // console log ghosts array of ghost objects
-  ghosts.forEach((ghost) => {
-    myBoard[ghost.pos].append(ghost); // append ghost to cell
-  });
-
-  if (keyz.ArrowRight){
-    player.pos += 1;
-  } else if (keyz.ArrowLeft){
-    player.pos -= 1;
-  } else if (keyz.ArrowUp){
-    player.pos -= g.size;
-  } else if (keyz.ArrowDown){
-    player.pos += g.size;
-  }
+    player.cool--; // decrement player cooldown slowdown value
+    if (player.cool < 0) {
+       console.log(ghosts); // console log ghosts array of ghost objects
+       //placement and movement of ghosts
+       ghosts.forEach((ghost) => {
+         myBoard[ghost.pos].append(ghost); // append ghost to cell
+       });
+       //Keyboard events to move pacman
+       if (keyz.ArrowRight) {
+         player.pos += 1;
+       } else if (keyz.ArrowLeft) {
+         player.pos -= 1;
+       } else if (keyz.ArrowUp) {
+         player.pos -= g.size;
+       } else if (keyz.ArrowDown) {
+         player.pos += g.size;
+       }
+    }
 
   console.log(player.pos); // console log player position
 
