@@ -15,6 +15,14 @@ const tempBoard = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 ];
 
+const keyz = {
+  ArrowRight: false,
+  ArrowLeft: false,
+  ArrowUp: false,
+  ArrowDown: false
+};
+
+
 const ghosts = [];
 
 const g = {
@@ -46,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("keydown", (e) => {
+  console.log(e.code); // console log key presses
   player.play = requestAnimationFrame(move);
 });
 
