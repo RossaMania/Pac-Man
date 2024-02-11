@@ -98,6 +98,7 @@ move = () => {
 
   g.pacman.style.display = "block"; // show pacman element
   myBoard[player.pos].append(g.pacman); // append pacman to cell
+  player.play = requestAnimationFrame(move); // request animation frame
 };
 
 createGame = () => {
