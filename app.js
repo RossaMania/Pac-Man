@@ -1,4 +1,4 @@
-const board = ["pink", "blue", "green", "red", "purple", "orange"];
+const board = ["pink", "blue", "limegreen", "red", "orchid", "orange"];
 
 const myBoard = [];
 
