@@ -106,7 +106,7 @@ move = () => {
         if (ghost.counter <= 0) { // check if ghost counter is less than or equal to 0
           changeDir(ghost); // change ghost direction
         } else { //if the ghost isn't changing direction, then it's changing position.
-          let oldPos = ghost.pos; // current ghost position
+          let oldPos = ghost.pos; // original ghost position
           if (ghost.dx == 0) {
             ghost.pos -= g.size; // move ghost right
           } else if (ghost.dx == 1) {
@@ -116,6 +116,12 @@ move = () => {
           } else if (ghost.dx == 3) {
             ghost.pos -= 1; // move ghost up
           }
+        }
+        let valGhost = myBoard[ghost.pos]; // future ghost position
+        if (valGhost.t == 1) {
+          console.log("Ghost Wall!"); // console log wall
+          ghost.pos = oldPos; // set ghost position back to previous, current position
+          changeDir(ghost); // change ghost direction
         }
       });
 
