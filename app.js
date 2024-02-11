@@ -86,6 +86,12 @@ createGhost = () => {
   console.log(newGhost);
 }
 
+changeDir = (enemy) => {
+  enemy.dx = Math.floor(Math.random() * 4); // change ghost direction
+  // change ghost counter value to random number + 2 so it goes at least 2 spaces before changing direction
+  enemy.counter = Math.random() * 10 + 2;
+}
+
 move = () => {
 
   if (g.inplay) {
