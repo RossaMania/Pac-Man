@@ -4,8 +4,8 @@ const myBoard = [];
 
 const tempBoard = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-  1, 2, 3, 2, 2, 2, 2, 2, 2, 1,
-  1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+  1, 2, 3, 2, 2, 2, 2, 3, 2, 1,
+  1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
   1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
   1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
   1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
@@ -28,7 +28,7 @@ const g = {
 };
 
 const player = {
-  pos: 20,
+  pos: 32,
   speed: 4,
   cool: 0,
   pause: false,
@@ -45,7 +45,33 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(g);
 });
 
+document.addEventListener("keydown", (e) => {
+  player.play = requestAnimationFrame(move);
+});
+
+createGhost = () => {
+  let newGhost = g.ghost.cloneNode(true);
+  newGhost.pos = 11 + ghosts.length;
+  newGhost.style.display = "block";
+  newGhost.style.backgroundColor = board[ghosts.length];
+  newGhost.namer = board[ghosts.length] + "y";
+  ghosts.push(newGhost);
+  console.log(newGhost);
+}
+
+move = () => {
+  console.log(ghosts); // console log ghosts array of ghost objects
+  ghosts.forEach((ghost) => {
+    myBoard[ghost.pos].append(ghost); // append ghost to cell
+  });
+  myBoard[player.pos].append(g.pacman); // append pacman to cell
+};
+
 createGame = () => {
+  for(let i=0; i<g.ghosts; i++){
+    createGhost();
+  }
+
   tempBoard.forEach((cell) => {
     console.log(cell);
     createSquare(cell);
