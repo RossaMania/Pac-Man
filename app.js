@@ -90,11 +90,13 @@ move = () => {
 
     player.cool--; // decrement player cooldown slowdown value
     if (player.cool < 0) {
-      console.log(ghosts); // console log ghosts array of ghost objects
+      // console.log(ghosts);
       //placement and movement of ghosts
       ghosts.forEach((ghost) => {
         myBoard[ghost.pos].append(ghost); // append ghost to cell
       });
+
+
       //Keyboard events to move pacman
 
       let tempPos = player.pos; // current player position
@@ -105,8 +107,8 @@ move = () => {
         g.mouth.style.left = "60%"; // change pacman mouth direction to right
       } else if (keyz.ArrowLeft) {
         player.pos -= 1;
-        g.eye.style.right = "60%"; // change pacman eye direction to left
-        g.mouth.style.right = "0%"; // change pacman mouth direction to left
+        g.eye.style.left = "60%"; // change pacman eye direction to left
+        g.mouth.style.left = "0%"; // change pacman mouth direction to left
       } else if (keyz.ArrowUp) {
         player.pos -= g.size;
       } else if (keyz.ArrowDown) {
