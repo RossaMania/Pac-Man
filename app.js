@@ -126,8 +126,8 @@ move = () => {
 
       console.log(player.pos, tempPos); // console log future player position and current player position
 
-      if (player.pos != tempPos) {
-
+      if (player.pos != tempPos) { // check if pacman moved
+        // Open and close pacman mouth toggle function
         if (player.tog) {
           g.mouth.style.height = "30%";
           player.tog = false;
@@ -135,7 +135,6 @@ move = () => {
           g.mouth.style.height = "10%";
           player.tog = true;
         }
-
       }
 
       player.cool = player.speed; // set cooloff
