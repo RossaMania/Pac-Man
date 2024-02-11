@@ -123,6 +123,9 @@ move = () => {
           ghost.pos = oldPos; // set ghost position back to previous, current position
           changeDir(ghost); // change ghost direction
         }
+
+        myBoard[ghost.pos].append(ghost); // append ghost to cell
+
       });
 
 
