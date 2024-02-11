@@ -96,7 +96,18 @@ changeDir = (enemy) => {
   let gg = findDir(enemy); // find ghost position in grid format (x, y)
   let pp = findDir(player); // find pacman position in grid format (x, y)
 
-  enemy.dx = Math.floor(Math.random() * 4); // change ghost direction
+  // console.log(gg);
+  // console.log(pp);
+
+  let ran = Math.floor(Math.random() * 2); // random number 0 or 1
+
+  if (ran == 0) {
+    enemy.dx = (gg[0] < pp[0]) ? 2 : 3;
+  } // horizontal direction change based on ghost position and pacman position (left or right)
+  else {
+    enemy.dx = (gg[1] < pp[1]) ? 0 : 1;
+  } // vertical direction change based on ghost position and pacman position (up or down)
+
   // change ghost counter value to random number + 2 so it goes at least 2 spaces before changing direction
   enemy.counter = Math.random() * 10 + 2;
 }
