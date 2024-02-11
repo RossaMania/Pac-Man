@@ -28,7 +28,7 @@ const g = {
 };
 
 const player = {
-  pos: 20,
+  pos: 32,
   speed: 4,
   cool: 0,
   pause: false,
