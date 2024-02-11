@@ -79,6 +79,9 @@ createGhost = () => {
 }
 
 move = () => {
+
+  if (g.inplay) {
+
   console.log(ghosts); // console log ghosts array of ghost objects
   ghosts.forEach((ghost) => {
     myBoard[ghost.pos].append(ghost); // append ghost to cell
@@ -99,6 +102,8 @@ move = () => {
   g.pacman.style.display = "block"; // show pacman element
   myBoard[player.pos].append(g.pacman); // append pacman to cell
   player.play = requestAnimationFrame(move); // request animation frame
+}
+
 };
 
 createGame = () => {
