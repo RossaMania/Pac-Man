@@ -55,6 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("keydown", (e) => {
   console.log(e.code); // console log key presses
+  if (e.code in keyz) {
+    keyz[e.code] = true;
+  }
   player.play = requestAnimationFrame(move);
 });
 
