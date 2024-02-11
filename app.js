@@ -103,10 +103,12 @@ move = () => {
       ghosts.forEach((ghost) => {
         myBoard[ghost.pos].append(ghost); // append ghost to cell
         ghost.counter--; // decrement ghost counter
-        if (ghost.counter <= 0) { // check if ghost counter is less than or equal to 0
+        let oldPos = ghost.pos; // original ghost position
+        if (ghost.counter <= 0) {
+          // check if ghost counter is less than or equal to 0
           changeDir(ghost); // change ghost direction
-        } else { //if the ghost isn't changing direction, then it's changing position.
-          let oldPos = ghost.pos; // original ghost position
+        } else {
+          //if the ghost isn't changing direction, then it's changing position.
           if (ghost.dx == 0) {
             ghost.pos -= g.size; // move ghost right
           } else if (ghost.dx == 1) {
@@ -125,7 +127,6 @@ move = () => {
         }
 
         myBoard[ghost.pos].append(ghost); // append ghost to cell
-
       });
 
 
