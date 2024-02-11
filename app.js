@@ -78,10 +78,38 @@ createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
   newGhost.pos = 11 + ghosts.length;
   newGhost.style.display = "block";
+  newGhost.counter = 0;
+  newGhost.dx = Math.floor(Math.random() * 4);
   newGhost.style.backgroundColor = board[ghosts.length];
   newGhost.namer = board[ghosts.length] + "y";
   ghosts.push(newGhost);
   console.log(newGhost);
+}
+
+findDir = (a) => {
+  let val = [a.pos % g.size, Math.ceil(a.pos/g.size)]; // find position in grid format (x, y)
+  return val; // return position col, row
+}
+
+changeDir = (enemy) => {
+
+  let gg = findDir(enemy); // find ghost position in grid format (x, y)
+  let pp = findDir(player); // find pacman position in grid format (x, y)
+
+  // console.log(gg);
+  // console.log(pp);
+
+  let ran = Math.floor(Math.random() * 2); // random number 0 or 1
+
+  if (ran == 0) {
+    enemy.dx = (gg[0] < pp[0]) ? 2 : 3;
+  } // horizontal direction change based on ghost position and pacman position (left or right)
+  else {
+    enemy.dx = (gg[1] < pp[1]) ? 0 : 1;
+  } // vertical direction change based on ghost position and pacman position (up or down)
+
+  // change ghost counter value to random number + 2 so it goes at least 2 spaces before changing direction
+  enemy.counter = Math.random() * 10 + 2;
 }
 
 move = () => {
@@ -90,11 +118,43 @@ move = () => {
 
     player.cool--; // decrement player cooldown slowdown value
     if (player.cool < 0) {
-      console.log(ghosts); // console log ghosts array of ghost objects
+      // console.log(ghosts);
       //placement and movement of ghosts
       ghosts.forEach((ghost) => {
         myBoard[ghost.pos].append(ghost); // append ghost to cell
+        ghost.counter--; // decrement ghost counter
+        let oldPos = ghost.pos; // original ghost position
+        if (ghost.counter <= 0) {
+          // check if ghost counter is less than or equal to 0
+          changeDir(ghost); // change ghost direction
+        } else {
+          //if the ghost isn't changing direction, then it's changing position.
+          if (ghost.dx == 0) {
+            ghost.pos -= g.size; // move ghost right
+          } else if (ghost.dx == 1) {
+            ghost.pos += g.size; // move ghost left
+          } else if (ghost.dx == 2) {
+            ghost.pos += 1; // move ghost down
+          } else if (ghost.dx == 3) {
+            ghost.pos -= 1; // move ghost up
+          }
+        }
+
+        if (player.pos == ghost.pos) { // add ghost collision detection with pacman position by comparing ghost position to pacman position
+          console.log("Ghost got you " + ghost.namer); // console log ghost got you
+        }
+
+        let valGhost = myBoard[ghost.pos]; // future ghost position
+        if (valGhost.t == 1) {
+          console.log("Ghost Wall!"); // console log wall
+          ghost.pos = oldPos; // set ghost position back to previous, current position
+          changeDir(ghost); // change ghost direction
+        }
+
+        myBoard[ghost.pos].append(ghost); // append ghost to cell
       });
+
+
       //Keyboard events to move pacman
 
       let tempPos = player.pos; // current player position
@@ -105,8 +165,8 @@ move = () => {
         g.mouth.style.left = "60%"; // change pacman mouth direction to right
       } else if (keyz.ArrowLeft) {
         player.pos -= 1;
-        g.eye.style.right = "60%"; // change pacman eye direction to left
-        g.mouth.style.right = "0%"; // change pacman mouth direction to left
+        g.eye.style.left = "60%"; // change pacman eye direction to left
+        g.mouth.style.left = "0%"; // change pacman mouth direction to left
       } else if (keyz.ArrowUp) {
         player.pos -= g.size;
       } else if (keyz.ArrowDown) {
