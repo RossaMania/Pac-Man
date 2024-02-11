@@ -83,6 +83,19 @@ move = () => {
   ghosts.forEach((ghost) => {
     myBoard[ghost.pos].append(ghost); // append ghost to cell
   });
+
+  if(keyz.ArrowRight){
+    player.pos += 1;
+  } else if(keyz.ArrowLeft){
+    player.pos -= 1;
+  } else if(keyz.ArrowUp){
+    player.pos -= g.size;
+  } else if(keyz.ArrowDown){
+    player.pos += g.size;
+  }
+
+  console.log(player.pos); // console log player position
+
   g.pacman.style.display = "block"; // show pacman element
   myBoard[player.pos].append(g.pacman); // append pacman to cell
 };
