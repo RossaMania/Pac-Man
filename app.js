@@ -90,31 +90,35 @@ move = () => {
 
     player.cool--; // decrement player cooldown slowdown value
     if (player.cool < 0) {
-       console.log(ghosts); // console log ghosts array of ghost objects
-       //placement and movement of ghosts
-       ghosts.forEach((ghost) => {
-         myBoard[ghost.pos].append(ghost); // append ghost to cell
-       });
-       //Keyboard events to move pacman
-       let tempPos = player.pos; // current player position
+      console.log(ghosts); // console log ghosts array of ghost objects
+      //placement and movement of ghosts
+      ghosts.forEach((ghost) => {
+        myBoard[ghost.pos].append(ghost); // append ghost to cell
+      });
+      //Keyboard events to move pacman
+      let tempPos = player.pos; // current player position
 
-       if (keyz.ArrowRight) {
-         player.pos += 1;
-       } else if (keyz.ArrowLeft) {
-         player.pos -= 1;
-       } else if (keyz.ArrowUp) {
-         player.pos -= g.size;
-       } else if (keyz.ArrowDown) {
-         player.pos += g.size;
-       }
+      if (keyz.ArrowRight) {
+        player.pos += 1;
+      } else if (keyz.ArrowLeft) {
+        player.pos -= 1;
+      } else if (keyz.ArrowUp) {
+        player.pos -= g.size;
+      } else if (keyz.ArrowDown) {
+        player.pos += g.size;
+      }
 
-    player.cool = player.speed; // set cooloff
+      let newPlace = myBoard[player.pos]; // future player position pacman is moving toward.
 
-    let newPlace = myBoard[player.pos]; // future player position pacman is moving toward.
+      if (newPlace.t == 1) {
+        console.log("wall!"); // console log wall
+        player.pos = tempPos; // set player position back to previous, current position
+      }
 
-    console.log(newPlace);
+      player.cool = player.speed; // set cooloff
 
-  }
+      console.log(newPlace.t); // console log future player position type value
+    }
 
   myBoard[player.pos].append(g.pacman); // append pacman to cell
   player.play = requestAnimationFrame(move); // request animation frame
