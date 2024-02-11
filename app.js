@@ -61,6 +61,13 @@ document.addEventListener("keydown", (e) => {
   player.play = requestAnimationFrame(move);
 });
 
+document.addEventListener("keyup", (e) => {
+  console.log(e.code); // console log key presses
+  if (e.code in keyz) {
+    keyz[e.code] = false;
+  }
+})
+
 createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
   newGhost.pos = 11 + ghosts.length;
