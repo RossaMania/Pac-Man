@@ -45,6 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(g);
 });
 
+document.addEventListener("keydown", (e) => {
+  player.play = requestAnimationFrame(move);
+});
+
 createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
   newGhost.pos = 15 + ghosts.length;
