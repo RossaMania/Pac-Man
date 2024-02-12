@@ -265,7 +265,8 @@ return startPosPlayer(val + 1);
 }
 
 updateScore = () => {
-  
+  g.score.innherHTML = `Score: ${player.score}`;
+  g.lives.innerHTML = `Lives: ${player.lives}`;
 };
 
 createSquare = (val) => {
