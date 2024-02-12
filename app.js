@@ -143,8 +143,11 @@ move = () => {
           }
         }
 
-        if (player.pos == ghost.pos) { // add ghost collision detection with pacman position by comparing ghost position to pacman position
+        if (player.pos == ghost.pos) {
+          // add ghost collision detection with pacman position by comparing ghost position to pacman position
           console.log("Ghost got you " + ghost.namer); // console log ghost got you
+          player.lives--; // decrement player lives
+          updateScore(); // update lives
           gameReset(); // reset game
         }
 
@@ -188,7 +191,7 @@ move = () => {
         console.log("dot!"); // console log dot
         myBoard[player.pos].innerHTML = ""; // remove dot from cell
         player.score++; // increment player score
-        updateScore() // update score
+        updateScore(); // update score
         newPlace.t = 0; // dot is gone, set cell type value to 0
       }
 
