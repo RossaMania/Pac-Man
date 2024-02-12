@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
   g.ghost = document.querySelector(".ghost"); // ghost parent element object template
   g.score = document.querySelector(".score"); // score element
   g.lives = document.querySelector(".lives"); // lives element
+  g.startGame = document.querySelector(".btn"); // start game button
   g.ghost.style.display = "none"; // hide ghost element until game starts.
   createGame(); // create game board
   updateScore(); // update score
