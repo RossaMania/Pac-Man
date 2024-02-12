@@ -49,6 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
   g.eye = document.querySelector(".eye"); // pacman child eye element to change pacman direction
   g.mouth = document.querySelector(".mouth"); // pacman child mouth element to change pacman direction
   g.ghost = document.querySelector(".ghost"); // ghost parent element object template
+  g.score = document.querySelector(".score"); // score element
+  g.lives = document.querySelector(".lives"); // lives element
   g.ghost.style.display = "none"; // hide ghost element until game starts.
   createGame(); // create game board
   // console.log(g);
