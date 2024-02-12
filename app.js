@@ -146,7 +146,7 @@ move = () => {
 
         let valGhost = myBoard[ghost.pos]; // future ghost position
         if (valGhost.t == 1) {
-          console.log("Ghost Wall!"); // console log wall
+          // console.log("Ghost Wall!"); // console log wall
           ghost.pos = oldPos; // set ghost position back to previous, current position
           changeDir(ghost); // change ghost direction
         }
