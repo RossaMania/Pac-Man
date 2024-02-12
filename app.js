@@ -78,6 +78,11 @@ document.addEventListener("keyup", (e) => {
   }
 })
 
+g.startGame.addEventListener("click", (e) => {
+console.log("Start Game!"); // console log start game
+g.startGame.display = "none"; // hide start game button once clicked.
+});
+
 createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
   newGhost.pos = 11 + ghosts.length;
