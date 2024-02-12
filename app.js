@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   g.lives = document.querySelector(".lives"); // lives element
   g.ghost.style.display = "none"; // hide ghost element until game starts.
   createGame(); // create game board
+  updateScore(); // update score
   // console.log(g);
 });
 
