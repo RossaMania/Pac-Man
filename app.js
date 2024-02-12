@@ -187,6 +187,8 @@ move = () => {
       if (newPlace.t == 2) {
         console.log("dot!"); // console log dot
         myBoard[player.pos].innerHTML = ""; // remove dot from cell
+        player.score++; // increment player score
+        updateScore() // update score
         newPlace.t = 0; // dot is gone, set cell type value to 0
       }
 
