@@ -5,14 +5,14 @@ const myBoard = [];
 const tempBoard = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 2, 3, 2, 2, 2, 2, 2, 2, 1,
-  1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+  1, 2, 3, 2, 2, 2, 2, 2, 2, 1,
   1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
-  1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+  1, 2, 3, 2, 2, 2, 2, 2, 2, 1,
   1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
-  1, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+  1, 2, 3, 2, 2, 2, 2, 2, 2, 1,
   1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
   1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
-  1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+  1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 ];
 
 const keyz = {
@@ -48,9 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
   g.mouth = document.querySelector(".mouth"); // pacman child mouth element to change pacman direction
   g.ghost = document.querySelector(".ghost"); // ghost parent element object template
   g.ghost.style.display = "none"; // hide ghost element until game starts.
-  g.pacman.style.display = "none"; // hide pacman element until game starts.
   createGame(); // create game board
-  console.log(g);
+  // console.log(g);
 });
 
 document.addEventListener("keydown", (e) => {
@@ -60,7 +59,6 @@ document.addEventListener("keydown", (e) => {
   }
 
   if (!g.inplay && !player.pause) {
-    g.pacman.style.display = "block"; // show pacman element
     player.play = requestAnimationFrame(move);
     g.inplay = true;
   }
@@ -81,6 +79,7 @@ createGhost = () => {
   newGhost.counter = 0;
   newGhost.dx = Math.floor(Math.random() * 4);
   newGhost.style.backgroundColor = board[ghosts.length];
+  newGhost.style.opacity = "0.8";
   newGhost.namer = board[ghosts.length] + "y";
   ghosts.push(newGhost);
   console.log(newGhost);
@@ -142,11 +141,12 @@ move = () => {
 
         if (player.pos == ghost.pos) { // add ghost collision detection with pacman position by comparing ghost position to pacman position
           console.log("Ghost got you " + ghost.namer); // console log ghost got you
+          gameReset(); // reset game
         }
 
         let valGhost = myBoard[ghost.pos]; // future ghost position
         if (valGhost.t == 1) {
-          console.log("Ghost Wall!"); // console log wall
+          // console.log("Ghost Wall!"); // console log wall
           ghost.pos = oldPos; // set ghost position back to previous, current position
           changeDir(ghost); // change ghost direction
         }
@@ -204,8 +204,12 @@ move = () => {
       console.log(newPlace.t); // console log future player position type value
     }
 
-  myBoard[player.pos].append(g.pacman); // append pacman to cell
-  player.play = requestAnimationFrame(move); // request animation frame
+    if (!player.pause) {
+
+    myBoard[player.pos].append(g.pacman); // append pacman to cell
+    player.play = requestAnimationFrame(move); // request animation frame
+  }
+
 }
 
 };
@@ -225,7 +229,36 @@ createGame = () => {
   }
   g.grid.style.gridTemplateColumns = g.x;
   g.grid.style.gridTemplateRows = g.x;
+
+  startPos();
 };
+
+gameReset = () => {
+  console.log("Paused!");
+  window.cancelAnimationFrame(player.play);
+  g.inplay = false;
+  player.pause = true;
+  setTimeout(startPos, 3000);
+};
+
+startPos = () => {
+  player.pause = false;
+  let firstStartPos = 20;
+  player.pos = startPosPlayer(firstStartPos);
+  myBoard[player.pos].append(g.pacman);
+  ghosts.forEach((ghost, index) => {
+    let temp = (g.size + 1) + index;
+    ghost.pos = startPosPlayer(temp);
+    myBoard[ghost.pos].append(ghost);
+  })
+};
+
+startPosPlayer = (val) => {
+if (myBoard[val].t != 1) {
+  return val;
+}
+return startPosPlayer(val + 1);
+}
 
 createSquare = (val) => {
   const div = document.createElement("div");
