@@ -271,8 +271,13 @@ return startPosPlayer(val + 1);
 }
 
 updateScore = () => {
-  g.score.innherHTML = `Score: ${player.score}`;
+  if (player.lives < 0) {
+    console.log("GAME OVER, MAN!");
+    g.lives.innerHTML = "GAME OVER!"
+  } else {
+  g.score.innerHTML = `Score: ${player.score}`;
   g.lives.innerHTML = `Lives: ${player.lives}`;
+}
 };
 
 createSquare = (val) => {
