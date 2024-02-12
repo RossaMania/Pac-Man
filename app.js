@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
   g.mouth = document.querySelector(".mouth"); // pacman child mouth element to change pacman direction
   g.ghost = document.querySelector(".ghost"); // ghost parent element object template
   g.ghost.style.display = "none"; // hide ghost element until game starts.
-  g.pacman.style.display = "none"; // hide pacman element until game starts.
   createGame(); // create game board
   console.log(g);
 });
@@ -60,7 +59,6 @@ document.addEventListener("keydown", (e) => {
   }
 
   if (!g.inplay && !player.pause) {
-    g.pacman.style.display = "block"; // show pacman element
     player.play = requestAnimationFrame(move);
     g.inplay = true;
   }
@@ -225,7 +223,28 @@ createGame = () => {
   }
   g.grid.style.gridTemplateColumns = g.x;
   g.grid.style.gridTemplateRows = g.x;
+
+  startPos();
 };
+
+startPos = () => {
+  player.pause = false;
+  let firstStartPos = 20;
+  player.pos = startPosPlayer(firstStartPos);
+  myBoard[player.pos].append(g.pacman);
+  ghosts.forEach((ghost, index) => {
+    let temp = (g.size + 1) + index;
+    ghost.pos = startPosPlayer(temp);
+    myBoard[ghost.pos].append(ghost);
+  })
+};
+
+startPosPlayer = (val) => {
+if (myBoard[val].t != 1) {
+  return val;
+}
+return startPosPlayer(val + 1);
+}
 
 createSquare = (val) => {
   const div = document.createElement("div");
