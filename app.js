@@ -141,6 +141,7 @@ move = () => {
 
         if (player.pos == ghost.pos) { // add ghost collision detection with pacman position by comparing ghost position to pacman position
           console.log("Ghost got you " + ghost.namer); // console log ghost got you
+          gameReset(); // reset game
         }
 
         let valGhost = myBoard[ghost.pos]; // future ghost position
