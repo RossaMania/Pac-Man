@@ -30,7 +30,7 @@ const g = {
   y: "",
   h: 100,
   size: 10,
-  ghosts: 6,
+  ghosts: 2,
   inplay: false,
 };
 
@@ -39,6 +39,8 @@ const player = {
   speed: 4,
   cool: 0,
   pause: false,
+  score: 0,
+  lives: 5
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -259,6 +261,10 @@ if (myBoard[val].t != 1) {
 }
 return startPosPlayer(val + 1);
 }
+
+updateScore = () => {
+  
+};
 
 createSquare = (val) => {
   const div = document.createElement("div");
