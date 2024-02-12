@@ -202,8 +202,12 @@ move = () => {
       console.log(newPlace.t); // console log future player position type value
     }
 
-  myBoard[player.pos].append(g.pacman); // append pacman to cell
-  player.play = requestAnimationFrame(move); // request animation frame
+    if (!player.pause) {
+
+    myBoard[player.pos].append(g.pacman); // append pacman to cell
+    player.play = requestAnimationFrame(move); // request animation frame
+  }
+
 }
 
 };
@@ -232,7 +236,7 @@ gameReset = () => {
   window.cancelAnimationFrame(player.play);
   g.inplay = false;
   player.pause = true;
-  setTimeout(startPos(), 3000);
+  setTimeout(startPos, 3000);
 };
 
 startPos = () => {
