@@ -30,7 +30,7 @@ const g = {
   y: "",
   h: 100,
   size: 10,
-  ghosts: 6,
+  ghosts: 2,
   inplay: false,
 };
 
@@ -39,6 +39,8 @@ const player = {
   speed: 4,
   cool: 0,
   pause: false,
+  score: 0,
+  lives: 5
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -47,8 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
   g.eye = document.querySelector(".eye"); // pacman child eye element to change pacman direction
   g.mouth = document.querySelector(".mouth"); // pacman child mouth element to change pacman direction
   g.ghost = document.querySelector(".ghost"); // ghost parent element object template
+  g.score = document.querySelector(".score"); // score element
+  g.lives = document.querySelector(".lives"); // lives element
   g.ghost.style.display = "none"; // hide ghost element until game starts.
   createGame(); // create game board
+  updateScore(); // update score
   // console.log(g);
 });
 
@@ -139,8 +144,11 @@ move = () => {
           }
         }
 
-        if (player.pos == ghost.pos) { // add ghost collision detection with pacman position by comparing ghost position to pacman position
+        if (player.pos == ghost.pos) {
+          // add ghost collision detection with pacman position by comparing ghost position to pacman position
           console.log("Ghost got you " + ghost.namer); // console log ghost got you
+          player.lives--; // decrement player lives
+          updateScore(); // update lives
           gameReset(); // reset game
         }
 
@@ -183,6 +191,8 @@ move = () => {
       if (newPlace.t == 2) {
         console.log("dot!"); // console log dot
         myBoard[player.pos].innerHTML = ""; // remove dot from cell
+        player.score++; // increment player score
+        updateScore(); // update score
         newPlace.t = 0; // dot is gone, set cell type value to 0
       }
 
@@ -259,6 +269,16 @@ if (myBoard[val].t != 1) {
 }
 return startPosPlayer(val + 1);
 }
+
+updateScore = () => {
+  if (player.lives < 0) {
+    console.log("GAME OVER, MAN!");
+    g.lives.innerHTML = "GAME OVER!"
+  } else {
+  g.score.innerHTML = `Score: ${player.score}`;
+  g.lives.innerHTML = `Lives: ${player.lives}`;
+}
+};
 
 createSquare = (val) => {
   const div = document.createElement("div");
