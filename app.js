@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   g.ghost = document.querySelector(".ghost"); // ghost parent element object template
   g.ghost.style.display = "none"; // hide ghost element until game starts.
   createGame(); // create game board
-  console.log(g);
+  // console.log(g);
 });
 
 document.addEventListener("keydown", (e) => {
@@ -225,6 +225,14 @@ createGame = () => {
   g.grid.style.gridTemplateRows = g.x;
 
   startPos();
+};
+
+gameReset = () => {
+  console.log("Paused!");
+  window.cancelAnimationFrame(player.play);
+  g.inplay = false;
+  player.pause = true;
+  setTimeout(startPos(), 3000);
 };
 
 startPos = () => {
