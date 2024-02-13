@@ -45,6 +45,7 @@ const player = {
 
 document.addEventListener("DOMContentLoaded", () => {
   g.grid = document.querySelector(".grid"); // game board
+  g.grid.display = "none"; // hide game board until game starts.
   g.pacman = document.querySelector(".pacman"); // pacman parent element object
   g.eye = document.querySelector(".eye"); // pacman child eye element to change pacman direction
   g.mouth = document.querySelector(".mouth"); // pacman child mouth element to change pacman direction
@@ -80,6 +81,7 @@ document.addEventListener("keyup", (e) => {
 
 g.startGame.addEventListener("click", (e) => {
 console.log("Start Game!"); // console log start game
+g.grid.style.display = "block"; // show game board
 g.startGame.display = "none"; // hide start game button once clicked.
 });
 
