@@ -265,6 +265,9 @@ gameReset = () => {
   window.cancelAnimationFrame(player.play);
   g.inplay = false;
   player.pause = true;
+  if (player.lives <= 0) {
+    player.gameover = true;
+  }
   if (!player.gameover) {
   setTimeout(startPos, 3000);
 }
