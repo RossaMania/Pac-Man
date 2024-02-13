@@ -68,7 +68,13 @@ gameStarter = (e) => {
   //console.log("Start Game!"); // //console log start game
   g.grid.innerHTML = ""; // clear game board grid
   g.x = ""; // clear grid x value
-  (player.score = 0), (player.lives = 5), (player.gameover = false);
+  if (!player.gamewin) {
+    player.score = 0,
+    player.lives = 5
+  } else {
+    player.gamewin = false;
+  }
+  player.gameover = false;
   createGame(); // create game board
   updateScore(); // update score
   g.grid.focus(); // focus on game board
@@ -273,6 +279,8 @@ createGame = () => {
 
 playerWins = () => {
   player.gamewin = true;
+  g.inplay = false;
+  player.pause = true;
   startGame.style.display = "block";
 }
 
