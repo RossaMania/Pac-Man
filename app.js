@@ -61,6 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // console.log(g);
 });
 
+startGame.addEventListener("click", gameStarter); // start game button event listener
+
 document.addEventListener("keydown", (e) => {
   console.log(e.code); // console log key presses
   if (e.code in keyz) {
@@ -79,9 +81,7 @@ document.addEventListener("keyup", (e) => {
   if (e.code in keyz) {
     keyz[e.code] = false;
   }
-})
-
-startGame.addEventListener("click", gameStarter); // start game button event listener
+});
 
 createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
