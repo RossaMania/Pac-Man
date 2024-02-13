@@ -30,7 +30,7 @@ const g = {
   y: "",
   h: 100,
   size: 10,
-  ghosts: 2,
+  ghosts: 0,
   inplay: false,
 };
 
