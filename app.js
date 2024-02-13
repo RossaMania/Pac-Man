@@ -260,13 +260,18 @@ createGame = () => {
   startPos();
 };
 
+endGame = () => {
+  btn.style.display = "block";
+};
+
 gameReset = () => {
   console.log("Paused!");
   window.cancelAnimationFrame(player.play);
   g.inplay = false;
   player.pause = true;
-  if (player.lives <= 0) {
+  if (player.lives < 0) {
     player.gameover = true;
+    endGame();
   }
   if (!player.gameover) {
   setTimeout(startPos, 3000);
