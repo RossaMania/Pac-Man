@@ -56,8 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   g.lives = document.querySelector(".lives"); // lives element
   g.ghost.style.display = "none"; // hide ghost element until game starts.
   g.pacman.style.display = "none"; // hide pacman element until game starts.
-  createGame(); // create game board
-  updateScore(); // update score
+
   // console.log(g);
 });
 
@@ -82,12 +81,14 @@ document.addEventListener("keyup", (e) => {
 })
 
 startGame.addEventListener("click", (e) => {
-console.log("Start Game!"); // console log start game
-player.score = 0,
-player.lives = 5
-g.grid.style.display = "grid"; // show game board
-startGame.style.display = "none"; // hide start game button once clicked.
-g.pacman.style.display = "block"; // show pacman element once game starts.
+  console.log("Start Game!"); // console log start game
+  (player.score = 0), (player.lives = 5);
+  createGame(); // create game board
+  updateScore(); // update score
+  g.grid.focus(); // focus on game board
+  g.grid.style.display = "grid"; // show game board
+  startGame.style.display = "none"; // hide start game button once clicked.
+  g.pacman.style.display = "block"; // show pacman element once game starts.
 });
 
 createGhost = () => {
