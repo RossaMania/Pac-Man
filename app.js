@@ -215,6 +215,9 @@ move = () => {
         myBoard[player.pos].innerHTML = ""; // remove dot from cell
         let tempDots = document.querySelectorAll(".dot");
         console.log(tempDots.length); // //console log dot length
+        if (tempDots.length == 0) {
+          playerWins(); // player wins
+        }
         player.score++; // increment player score
         updateScore(); // update score
         newPlace.t = 0; // dot is gone, set cell type value to 0
