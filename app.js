@@ -82,7 +82,7 @@ document.addEventListener("keyup", (e) => {
 
 startGame.addEventListener("click", (e) => {
 console.log("Start Game!"); // console log start game
-g.grid.style.display = "block"; // show game board
+g.grid.style.display = "grid"; // show game board
 startGame.style.display = "none"; // hide start game button once clicked.
 });
 
