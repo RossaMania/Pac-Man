@@ -261,7 +261,7 @@ createGame = () => {
 };
 
 endGame = () => {
-  btn.style.display = "block";
+  startGame.style.display = "block";
 };
 
 gameReset = () => {
@@ -300,7 +300,7 @@ return startPosPlayer(val + 1);
 updateScore = () => {
   if (player.lives < 0) {
     console.log("GAME OVER, MAN!");
-    player.gameover = false;
+    player.gameover = true;
     g.lives.innerHTML = "GAME OVER!"
   } else {
   g.score.innerHTML = `Score: ${player.score}`;
