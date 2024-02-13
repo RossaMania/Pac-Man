@@ -40,7 +40,8 @@ const player = {
   cool: 0,
   pause: false,
   score: 0,
-  lives: 5
+  lives: 5,
+  gameover: true
 };
 
 const startGame = document.querySelector(".btn"); // start game button
@@ -82,7 +83,9 @@ document.addEventListener("keyup", (e) => {
 
 startGame.addEventListener("click", (e) => {
   console.log("Start Game!"); // console log start game
-  (player.score = 0), (player.lives = 5);
+  player.score = 0,
+  player.lives = 5,
+  player.gameover = false;
   createGame(); // create game board
   updateScore(); // update score
   g.grid.focus(); // focus on game board
