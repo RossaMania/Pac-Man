@@ -81,18 +81,7 @@ document.addEventListener("keyup", (e) => {
   }
 })
 
-startGame.addEventListener("click", (e) => {
-  console.log("Start Game!"); // console log start game
-  player.score = 0,
-  player.lives = 5,
-  player.gameover = false;
-  createGame(); // create game board
-  updateScore(); // update score
-  g.grid.focus(); // focus on game board
-  g.grid.style.display = "grid"; // show game board
-  startGame.style.display = "none"; // hide start game button once clicked.
-  g.pacman.style.display = "block"; // show pacman element once game starts.
-});
+startGame.addEventListener("click", startGame); // start game button event listener
 
 createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
@@ -263,6 +252,18 @@ createGame = () => {
 endGame = () => {
   startGame.style.display = "block";
 };
+
+startGame = (e) => {
+  console.log("Start Game!"); // console log start game
+  (player.score = 0), (player.lives = 5), (player.gameover = false);
+  createGame(); // create game board
+  updateScore(); // update score
+  g.grid.focus(); // focus on game board
+  g.grid.style.display = "grid"; // show game board
+  startGame.style.display = "none"; // hide start game button once clicked.
+  g.pacman.style.display = "block"; // show pacman element once game starts.
+};
+
 
 gameReset = () => {
   console.log("Paused!");
