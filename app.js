@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 gameStarter = (e) => {
+  myBoard.length = 0; // clear myBoard array
+  ghosts.length = 0; // clear ghosts array
   console.log("Start Game!"); // console log start game
   g.grid.innerHTML = ""; // clear game board grid
   (player.score = 0), (player.lives = 5), (player.gameover = false);
