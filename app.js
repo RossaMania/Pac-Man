@@ -40,11 +40,15 @@ const player = {
   cool: 0,
   pause: false,
   score: 0,
-  lives: 5
+  lives: 5,
+  gameover: true
 };
+
+const startGame = document.querySelector(".btn"); // start game button
 
 document.addEventListener("DOMContentLoaded", () => {
   g.grid = document.querySelector(".grid"); // game board
+  g.grid.style.display = "none"; // hide game board until game starts.
   g.pacman = document.querySelector(".pacman"); // pacman parent element object
   g.eye = document.querySelector(".eye"); // pacman child eye element to change pacman direction
   g.mouth = document.querySelector(".mouth"); // pacman child mouth element to change pacman direction
@@ -52,10 +56,27 @@ document.addEventListener("DOMContentLoaded", () => {
   g.score = document.querySelector(".score"); // score element
   g.lives = document.querySelector(".lives"); // lives element
   g.ghost.style.display = "none"; // hide ghost element until game starts.
-  createGame(); // create game board
-  updateScore(); // update score
+  g.pacman.style.display = "none"; // hide pacman element until game starts.
+
   // console.log(g);
 });
+
+gameStarter = (e) => {
+  myBoard.length = 0; // clear myBoard array
+  ghosts.length = 0; // clear ghosts array
+  console.log("Start Game!"); // console log start game
+  g.grid.innerHTML = ""; // clear game board grid
+  g.x = ""; // clear grid x value
+  (player.score = 0), (player.lives = 5), (player.gameover = false);
+  createGame(); // create game board
+  updateScore(); // update score
+  g.grid.focus(); // focus on game board
+  g.grid.style.display = "grid"; // show game board
+  startGame.style.display = "none"; // hide start game button once clicked.
+  g.pacman.style.display = "block"; // show pacman element once game starts.
+};
+
+startGame.addEventListener("click", gameStarter); // start game button event listener
 
 document.addEventListener("keydown", (e) => {
   console.log(e.code); // console log key presses
@@ -75,7 +96,7 @@ document.addEventListener("keyup", (e) => {
   if (e.code in keyz) {
     keyz[e.code] = false;
   }
-})
+});
 
 createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
@@ -243,12 +264,25 @@ createGame = () => {
   startPos();
 };
 
+endGame = () => {
+  startGame.style.display = "block";
+};
+
+
+
+
 gameReset = () => {
   console.log("Paused!");
   window.cancelAnimationFrame(player.play);
   g.inplay = false;
   player.pause = true;
+  if (player.lives < 0) {
+    player.gameover = true;
+    endGame();
+  }
+  if (!player.gameover) {
   setTimeout(startPos, 3000);
+}
 };
 
 startPos = () => {
@@ -273,6 +307,7 @@ return startPosPlayer(val + 1);
 updateScore = () => {
   if (player.lives < 0) {
     console.log("GAME OVER, MAN!");
+    player.gameover = true;
     g.lives.innerHTML = "GAME OVER!"
   } else {
   g.score.innerHTML = `Score: ${player.score}`;
