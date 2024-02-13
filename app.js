@@ -61,6 +61,18 @@ document.addEventListener("DOMContentLoaded", () => {
   // console.log(g);
 });
 
+gameStarter = (e) => {
+  console.log("Start Game!"); // console log start game
+  g.grid.innerHTML = ""; // clear game board grid
+  (player.score = 0), (player.lives = 5), (player.gameover = false);
+  createGame(); // create game board
+  updateScore(); // update score
+  g.grid.focus(); // focus on game board
+  g.grid.style.display = "grid"; // show game board
+  startGame.style.display = "none"; // hide start game button once clicked.
+  g.pacman.style.display = "block"; // show pacman element once game starts.
+};
+
 startGame.addEventListener("click", gameStarter); // start game button event listener
 
 document.addEventListener("keydown", (e) => {
@@ -253,17 +265,7 @@ endGame = () => {
   startGame.style.display = "block";
 };
 
-gameStarter = (e) => {
-  console.log("Start Game!"); // console log start game
-  g.grid.innerHTML = ""; // clear game board grid
-  (player.score = 0), (player.lives = 5), (player.gameover = false);
-  createGame(); // create game board
-  updateScore(); // update score
-  g.grid.focus(); // focus on game board
-  g.grid.style.display = "grid"; // show game board
-  startGame.style.display = "none"; // hide start game button once clicked.
-  g.pacman.style.display = "block"; // show pacman element once game starts.
-};
+
 
 
 gameReset = () => {
