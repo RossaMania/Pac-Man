@@ -66,6 +66,7 @@ gameStarter = (e) => {
   ghosts.length = 0; // clear ghosts array
   console.log("Start Game!"); // console log start game
   g.grid.innerHTML = ""; // clear game board grid
+  g.x = ""; // clear grid x value
   (player.score = 0), (player.lives = 5), (player.gameover = false);
   createGame(); // create game board
   updateScore(); // update score
