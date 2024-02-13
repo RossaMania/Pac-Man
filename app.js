@@ -41,7 +41,8 @@ const player = {
   pause: false,
   score: 0,
   lives: 5,
-  gameover: true
+  gameover: true,
+  gamewin: false
 };
 
 const startGame = document.querySelector(".btn"); // start game button
@@ -270,7 +271,13 @@ createGame = () => {
   startPos();
 };
 
+playerWins = () => {
+  player.gamewin = true;
+  startGame.style.display = "block";
+}
+
 endGame = () => {
+  player.gamewin = false;
   startGame.style.display = "block";
 };
 
