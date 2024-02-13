@@ -43,6 +43,8 @@ const player = {
   lives: 5
 };
 
+const startGame = document.querySelector(".btn"); // start game button
+
 document.addEventListener("DOMContentLoaded", () => {
   g.grid = document.querySelector(".grid"); // game board
   g.grid.display = "none"; // hide game board until game starts.
@@ -52,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
   g.ghost = document.querySelector(".ghost"); // ghost parent element object template
   g.score = document.querySelector(".score"); // score element
   g.lives = document.querySelector(".lives"); // lives element
-  g.startGame = document.querySelector(".btn"); // start game button
   g.ghost.style.display = "none"; // hide ghost element until game starts.
   createGame(); // create game board
   updateScore(); // update score
@@ -79,10 +80,10 @@ document.addEventListener("keyup", (e) => {
   }
 })
 
-g.startGame.addEventListener("click", (e) => {
+startGame.addEventListener("click", (e) => {
 console.log("Start Game!"); // console log start game
 g.grid.style.display = "block"; // show game board
-g.startGame.display = "none"; // hide start game button once clicked.
+startGame.display = "none"; // hide start game button once clicked.
 });
 
 createGhost = () => {
