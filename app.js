@@ -81,7 +81,7 @@ document.addEventListener("keyup", (e) => {
   }
 })
 
-startGame.addEventListener("click", startGame); // start game button event listener
+startGame.addEventListener("click", gameStarter); // start game button event listener
 
 createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
@@ -253,8 +253,9 @@ endGame = () => {
   startGame.style.display = "block";
 };
 
-startGame = (e) => {
+gameStarter = (e) => {
   console.log("Start Game!"); // console log start game
+  g.grid.innerHTML = ""; // clear game board grid
   (player.score = 0), (player.lives = 5), (player.gameover = false);
   createGame(); // create game board
   updateScore(); // update score
