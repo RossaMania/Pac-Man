@@ -265,7 +265,9 @@ gameReset = () => {
   window.cancelAnimationFrame(player.play);
   g.inplay = false;
   player.pause = true;
+  if (!player.gameover) {
   setTimeout(startPos, 3000);
+}
 };
 
 startPos = () => {
@@ -290,6 +292,7 @@ return startPosPlayer(val + 1);
 updateScore = () => {
   if (player.lives < 0) {
     console.log("GAME OVER, MAN!");
+    player.gameover = false;
     g.lives.innerHTML = "GAME OVER!"
   } else {
   g.score.innerHTML = `Score: ${player.score}`;
