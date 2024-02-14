@@ -30,7 +30,7 @@ const g = {
   y: "",
   h: 100,
   size: 10,
-  ghosts: 2,
+  ghosts: 0,
   inplay: false,
 };
 
@@ -41,7 +41,8 @@ const player = {
   pause: false,
   score: 0,
   lives: 5,
-  gameover: true
+  gameover: true,
+  gamewin: false
 };
 
 const startGame = document.querySelector(".btn"); // start game button
@@ -58,16 +59,22 @@ document.addEventListener("DOMContentLoaded", () => {
   g.ghost.style.display = "none"; // hide ghost element until game starts.
   g.pacman.style.display = "none"; // hide pacman element until game starts.
 
-  // console.log(g);
+  // //console.log(g);
 });
 
 gameStarter = (e) => {
   myBoard.length = 0; // clear myBoard array
   ghosts.length = 0; // clear ghosts array
-  console.log("Start Game!"); // console log start game
+  //console.log("Start Game!"); // //console log start game
   g.grid.innerHTML = ""; // clear game board grid
   g.x = ""; // clear grid x value
-  (player.score = 0), (player.lives = 5), (player.gameover = false);
+  if (!player.gamewin) {
+    player.score = 0,
+    player.lives = 5
+  } else {
+    player.gamewin = false;
+  }
+  player.gameover = false;
   createGame(); // create game board
   updateScore(); // update score
   g.grid.focus(); // focus on game board
@@ -79,7 +86,7 @@ gameStarter = (e) => {
 startGame.addEventListener("click", gameStarter); // start game button event listener
 
 document.addEventListener("keydown", (e) => {
-  console.log(e.code); // console log key presses
+  //console.log(e.code); // //console log key presses
   if (e.code in keyz) {
     keyz[e.code] = true;
   }
@@ -92,7 +99,7 @@ document.addEventListener("keydown", (e) => {
 });
 
 document.addEventListener("keyup", (e) => {
-  console.log(e.code); // console log key presses
+  //console.log(e.code); // //console log key presses
   if (e.code in keyz) {
     keyz[e.code] = false;
   }
@@ -108,7 +115,7 @@ createGhost = () => {
   newGhost.style.opacity = "0.8";
   newGhost.namer = board[ghosts.length] + "y";
   ghosts.push(newGhost);
-  console.log(newGhost);
+  //console.log(newGhost);
 }
 
 findDir = (a) => {
@@ -121,8 +128,8 @@ changeDir = (enemy) => {
   let gg = findDir(enemy); // find ghost position in grid format (x, y)
   let pp = findDir(player); // find pacman position in grid format (x, y)
 
-  // console.log(gg);
-  // console.log(pp);
+  // //console.log(gg);
+  // //console.log(pp);
 
   let ran = Math.floor(Math.random() * 2); // random number 0 or 1
 
@@ -143,7 +150,7 @@ move = () => {
 
     player.cool--; // decrement player cooldown slowdown value
     if (player.cool < 0) {
-      // console.log(ghosts);
+      // //console.log(ghosts);
       //placement and movement of ghosts
       ghosts.forEach((ghost) => {
         myBoard[ghost.pos].append(ghost); // append ghost to cell
@@ -167,7 +174,7 @@ move = () => {
 
         if (player.pos == ghost.pos) {
           // add ghost collision detection with pacman position by comparing ghost position to pacman position
-          console.log("Ghost got you " + ghost.namer); // console log ghost got you
+          //console.log("Ghost got you " + ghost.namer); // //console log ghost got you
           player.lives--; // decrement player lives
           updateScore(); // update lives
           gameReset(); // reset game
@@ -175,7 +182,7 @@ move = () => {
 
         let valGhost = myBoard[ghost.pos]; // future ghost position
         if (valGhost.t == 1) {
-          // console.log("Ghost Wall!"); // console log wall
+          // //console.log("Ghost Wall!"); // //console log wall
           ghost.pos = oldPos; // set ghost position back to previous, current position
           changeDir(ghost); // change ghost direction
         }
@@ -205,19 +212,25 @@ move = () => {
       let newPlace = myBoard[player.pos]; // future player position pacman is moving toward.
 
       if (newPlace.t == 1) {
-        console.log("wall!"); // console log wall
+        //console.log("wall!"); // //console log wall
         player.pos = tempPos; // set player position back to previous, current position
       }
 
       if (newPlace.t == 2) {
-        console.log("dot!"); // console log dot
+        //console.log("dot!"); // //console log dot
+        // dots left
         myBoard[player.pos].innerHTML = ""; // remove dot from cell
+        let tempDots = document.querySelectorAll(".dot");
+        console.log(tempDots.length); // //console log dot length
+        if (tempDots.length == 0) {
+          playerWins(); // player wins
+        }
         player.score++; // increment player score
         updateScore(); // update score
         newPlace.t = 0; // dot is gone, set cell type value to 0
       }
 
-      console.log(player.pos, tempPos); // console log future player position and current player position
+      //console.log(player.pos, tempPos); // //console log future player position and current player position
 
       if (player.pos != tempPos) { // check if pacman moved
         // Open and close pacman mouth toggle function
@@ -232,7 +245,7 @@ move = () => {
 
       player.cool = player.speed; // set cooloff
 
-      console.log(newPlace.t); // console log future player position type value
+      //console.log(newPlace.t); // //console log future player position type value
     }
 
     if (!player.pause) {
@@ -251,7 +264,7 @@ createGame = () => {
   }
 
   tempBoard.forEach((cell) => {
-    console.log(cell);
+    //console.log(cell);
     createSquare(cell);
   });
 
@@ -264,7 +277,15 @@ createGame = () => {
   startPos();
 };
 
+playerWins = () => {
+  player.gamewin = true;
+  g.inplay = false;
+  player.pause = true;
+  startGame.style.display = "block";
+}
+
 endGame = () => {
+  player.gamewin = false;
   startGame.style.display = "block";
 };
 
@@ -272,7 +293,7 @@ endGame = () => {
 
 
 gameReset = () => {
-  console.log("Paused!");
+  //console.log("Paused!");
   window.cancelAnimationFrame(player.play);
   g.inplay = false;
   player.pause = true;
@@ -306,7 +327,7 @@ return startPosPlayer(val + 1);
 
 updateScore = () => {
   if (player.lives < 0) {
-    console.log("GAME OVER, MAN!");
+    //console.log("GAME OVER, MAN!");
     player.gameover = true;
     g.lives.innerHTML = "GAME OVER!"
   } else {
@@ -337,6 +358,6 @@ createSquare = (val) => {
   div.idVal = myBoard.length; // set cell id value based on myBoard array index
   div.addEventListener(
     "click", (e) => {
-      console.dir(div);
+      //console.dir(div);
     })
 };
