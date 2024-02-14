@@ -87,12 +87,30 @@ boardBuilder = () => {
       ? document.documentElement.clientHeight
       : document.documentElement.clientWidth;
   console.log(boxSize);
-  g.h = (boxSize / g.size) - (boxSize / (g.size * 20)) // height for the elements
+  g.h = (boxSize / g.size) - (boxSize / (g.size * 5)) // height for the elements
   console.log(g.h);
   for (let x = 0; x < g.size; x++) {
+
     let wallz = 0;
+
     for (let y = 0; y<g.size; y++) {
+
       let val = 2;
+      wallz--;
+
+      if (wallz > 0 && (x-1) % 2){
+        val = 1;
+      } else {
+        wallz = Math.floor(Math.random() * (g.size/2));
+      }
+
+      if (x == 1 || x == (g.size - 2) || y == 1 || y == (g.size - 2)) {
+        val = 2;
+      }
+
+      if (x == 0 || x == (g.size - 1) || y == 0 || y == (g.size - 1)) {
+        val = 1;
+      }
       tempBoard.push(val);
     }
 }
