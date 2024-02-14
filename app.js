@@ -23,7 +23,7 @@ const g = {
   x: "",
   y: "",
   h: 100,
-  size: 20,
+  size: 30,
   ghosts: 6,
   inplay: false,
   startGhost: 11
@@ -81,60 +81,48 @@ gameStarter = (e) => {
 };
 
 boardBuilder = () => {
+  console.log(tempBoard);
   tempBoard.length = 0;
   let boxSize =
-    (document.documentElement.clientHeight < document.documentElement.clientWidth)
+    document.documentElement.clientHeight < document.documentElement.clientWidth
       ? document.documentElement.clientHeight
       : document.documentElement.clientWidth;
   console.log(boxSize);
-  g.h = (boxSize / g.size) - (boxSize / (g.size * 5)) // height for the elements
+  g.h = boxSize / g.size - boxSize / (g.size * 5);
   console.log(g.h);
   let tog = false;
   for (let x = 0; x < g.size; x++) {
-
     let wallz = 0;
-
-    for (let y = 0; y<g.size; y++) {
-
+    for (let y = 0; y < g.size; y++) {
       let val = 2;
       wallz--;
-
-      if (wallz > 0 && (x-1) % 2){
+      if (wallz > 0 && (x - 1) % 2) {
         val = 1;
       } else {
-        wallz = Math.floor(Math.random() * (g.size/2));
+        wallz = Math.floor(Math.random() * (g.size / 2));
       }
-
-      if (x == (g.size - 2) ) {
+      if (x == 1 || x == g.size - 3 || y == 1 || y == g.size - 2) {
+        val = 2; //place dot
+      }
+      if (x == g.size - 2) {
         if (!tog) {
           g.startGhost = tempBoard.length;
           tog = true;
         }
         val = 4;
       }
-
-      if ((y == 3) || (y == (g.size - 4))) {
-        if (x == 1 || x == (g.size - 3)) {
-        val = 3;
+      if (y == 3 || y == g.size - 4) {
+        if (x == 1 || x == g.size - 3) {
+          val = 3;
         }
       }
-
-
-
-
-      if (x == 1 || x == (g.size - 3) || y == 1 || y == (g.size - 2)) {
-        val = 2;
-      }
-
-      if (x == 0 || x == (g.size - 1) || y == 0 || y == (g.size - 1)) {
+      if (x == 0 || x == g.size - 1 || y == 0 || y == g.size - 1) {
         val = 1;
       }
       tempBoard.push(val);
     }
-}
-
-gameStarter();
-
+  }
+  gameStarter();
 }
 
 // startGame.addEventListener("click", gameStarter); // start game button event listener
