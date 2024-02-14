@@ -81,13 +81,22 @@ gameStarter = (e) => {
 };
 
 boardBuilder = () => {
-  console.log(tempBoard);
+  tempBoard.length = 0;
   let boxSize =
-    document.documentElement.clientHeight < document.documentElement.clientWidth
+    (document.documentElement.clientHeight < document.documentElement.clientWidth)
       ? document.documentElement.clientHeight
       : document.documentElement.clientWidth;
   console.log(boxSize);
-};
+  g.h = (boxSize / g.size) - (boxSize / (g.size * 20)) // height for the elements
+  console.log(g.h);
+  for (let x = 0; x < g.size; x++) {
+    let wallz = 0;
+    let val = 2;
+
+    tempBoard.push(val);
+}
+console.log(tempBoard);
+}
 
 // startGame.addEventListener("click", gameStarter); // start game button event listener
 
