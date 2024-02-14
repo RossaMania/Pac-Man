@@ -204,9 +204,16 @@ move = () => {
         if (player.pos == ghost.pos) {
           // add ghost collision detection with pacman position by comparing ghost position to pacman position
           //console.log("Ghost got you " + ghost.namer); // //console log ghost got you
-          player.lives--; // decrement player lives
+          if (player.powerCount > 0) {
+            //YOU ate the ghost
+            player.score += 100; // increment player score by 100
+            let randomRegenerateSpot = Math.floor(Math.random() * 40); // random number 0 to 39
+            ghost.pos = startPosPlayer(randomRegenerateSpot); // set ghost position back to start
+          } else {
+            player.lives--; // decrement player lives
+            gameReset(); // reset game
+          }
           updateScore(); // update lives
-          gameReset(); // reset game
         }
 
         let valGhost = myBoard[ghost.pos]; // future ghost position
