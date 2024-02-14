@@ -30,7 +30,7 @@ const g = {
   y: "",
   h: 100,
   size: 10,
-  ghosts: 0,
+  ghosts: 1,
   inplay: false,
 };
 
@@ -112,6 +112,7 @@ createGhost = () => {
   newGhost.pos = 11 + ghosts.length;
   newGhost.style.display = "block";
   newGhost.counter = 0;
+  newGhost.defaultColor = board[ghosts.length];
   newGhost.dx = Math.floor(Math.random() * 4);
   newGhost.style.backgroundColor = board[ghosts.length];
   newGhost.style.opacity = "0.8";
@@ -154,6 +155,7 @@ move = () => {
     if (player.cool < 0) {
       // //console.log(ghosts);
       //placement and movement of ghosts
+      let tempPower = 0;
       if (player.powerup) {
         player.powerCount--; // decrement powerup count
         g.pacman.style.backgroundColor = "red"; // change pacman color to red
@@ -161,11 +163,17 @@ move = () => {
           player.powerup = false; // set powerup to false
           g.pacman.style.backgroundColor = "yellow"; // change pacman color back to yellow
           console.log("Lost power!"); // //console log lost power
+          tempPower = 1;
         }
       }
 
 
       ghosts.forEach((ghost) => {
+        if (tempPower == 1) {
+          ghost.style.backgroundColor = ghost.defaultColor; // change ghost color back to original
+        } else if (player.powerCount > 0) {
+          ghost.style.backgroundColor = "white"; // change ghost color to white
+        }
         myBoard[ghost.pos].append(ghost); // append ghost to cell
         ghost.counter--; // decrement ghost counter
         let oldPos = ghost.pos; // original ghost position
