@@ -104,7 +104,11 @@ boardBuilder = () => {
         wallz = Math.floor(Math.random() * (g.size/2));
       }
 
-      if (x == 1 || x == (g.size - 2) || y == 1 || y == (g.size - 2)) {
+      if (x == (g.size - 2) ) {
+        val = 4;
+      }
+
+      if (x == 1 || x == (g.size - 3) || y == 1 || y == (g.size - 2)) {
         val = 2;
       }
 
