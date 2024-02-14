@@ -158,7 +158,11 @@ move = () => {
       let tempPower = 0;
       if (player.powerup) {
         player.powerCount--; // decrement powerup count
-        g.pacman.style.backgroundColor = "red"; // change pacman color to red
+        if (player.powerCount % 2) {
+          g.pacman.style.backgroundColor = "red"; // change pacman color to red
+        } else {
+          g.pacman.style.backgroundColor = "orangered"; // change pacman color to red
+        }
         if (player.powerCount <= 0) {
           player.powerup = false; // set powerup to false
           g.pacman.style.backgroundColor = "yellow"; // change pacman color back to yellow
