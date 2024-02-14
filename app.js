@@ -97,6 +97,7 @@ boardBuilder = () => {
     }
 }
 console.log(tempBoard);
+gameStarter();
 }
 
 // startGame.addEventListener("click", gameStarter); // start game button event listener
