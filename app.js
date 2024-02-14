@@ -1,6 +1,6 @@
 const board = ["pink", "blue", "limegreen", "red", "orchid", "orange"];
 
-const myBoard = [];
+let myBoard = [];
 
 const tempBoard = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -32,6 +32,7 @@ const g = {
   size: 10,
   ghosts: 6,
   inplay: false,
+  startGhost: 11
 };
 
 const player = {
@@ -109,7 +110,7 @@ document.addEventListener("keyup", (e) => {
 
 createGhost = () => {
   let newGhost = g.ghost.cloneNode(true);
-  newGhost.pos = 11 + ghosts.length;
+  newGhost.pos = g.startGhost;
   newGhost.style.display = "block";
   newGhost.counter = 0;
   newGhost.defaultColor = board[ghosts.length];
@@ -213,8 +214,7 @@ move = () => {
           if (player.powerCount > 0) {
             //YOU ate the ghost
             player.score += 100; // increment player score by 100
-            let randomRegenerateSpot = Math.floor(Math.random() * 40); // random number 0 to 39
-            ghost.pos = startPosPlayer(randomRegenerateSpot); // set ghost position back to start
+            ghost.pos = g.startGhost; // set ghost position back to start
           } else {
             player.lives--; // decrement player lives
             gameReset(); // reset game
@@ -253,7 +253,7 @@ move = () => {
 
       let newPlace = myBoard[player.pos]; // future player position pacman is moving toward.
 
-      if (newPlace.t == 1) {
+      if (newPlace.t == 1 || newPlace.t == 4) {
         //console.log("wall!"); // //console log wall
         player.pos = tempPos; // set player position back to previous, current position
       }
@@ -400,6 +400,14 @@ createSquare = (val) => {
     dot.classList.add("dot");
     div.append(dot);
   } // add dot to cell
+
+    if (val === 4) {
+      div.classList.add("hideout");
+      if (g.startGhost == 11) {
+        g.startGhost = myBoard.length;
+      }
+    } // add hideout to cell
+
   if (val == 3) {
     const dot = document.createElement("div");
     dot.classList.add("power-pellet");
