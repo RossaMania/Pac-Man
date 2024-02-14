@@ -409,7 +409,7 @@ startPos = () => {
   player.pos = startPosPlayer(firstStartPos);
   myBoard[player.pos].append(g.pacman);
   ghosts.forEach((ghost, index) => {
-    let temp = (g.size + 1) + index;
+    let temp = g.startGhost;
     ghost.pos = startPosPlayer(temp);
     myBoard[ghost.pos].append(ghost);
   })
