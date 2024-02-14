@@ -30,7 +30,7 @@ const g = {
   y: "",
   h: 100,
   size: 10,
-  ghosts: 0,
+  ghosts: 6,
   inplay: false,
 };
 
@@ -42,7 +42,9 @@ const player = {
   score: 0,
   lives: 5,
   gameover: true,
-  gamewin: false
+  gamewin: false,
+  powerup: false,
+  powerCount: 0
 };
 
 const startGame = document.querySelector(".btn"); // start game button
@@ -110,6 +112,7 @@ createGhost = () => {
   newGhost.pos = 11 + ghosts.length;
   newGhost.style.display = "block";
   newGhost.counter = 0;
+  newGhost.defaultColor = board[ghosts.length];
   newGhost.dx = Math.floor(Math.random() * 4);
   newGhost.style.backgroundColor = board[ghosts.length];
   newGhost.style.opacity = "0.8";
@@ -152,7 +155,39 @@ move = () => {
     if (player.cool < 0) {
       // //console.log(ghosts);
       //placement and movement of ghosts
+      let tempPower = 0;
+      if (player.powerup) {
+        player.powerCount--; // decrement powerup count
+        if (player.powerCount % 2) {
+          g.pacman.style.backgroundColor = "red"; // change pacman color to red
+        } else {
+          g.pacman.style.backgroundColor = "orangered"; // change pacman color to red
+        }
+        if (player.powerCount <= 20) {
+          g.pacman.style.backgroundColor = "orange"; // change pacman color to orange
+        if (player.powerCount % 2) {
+          g.pacman.style.backgroundColor = "white"; // change pacman color to white
+        }
+      }
+        if (player.powerCount <= 0) {
+          player.powerup = false; // set powerup to false
+          g.pacman.style.backgroundColor = "yellow"; // change pacman color back to yellow
+          console.log("Lost power!"); // //console log lost power
+          tempPower = 1;
+        }
+      }
+
+
       ghosts.forEach((ghost) => {
+        if (tempPower == 1) {
+          ghost.style.backgroundColor = ghost.defaultColor; // change ghost color back to original
+        } else if (player.powerCount > 0) {
+          if (player.powerCount % 2) {
+            ghost.style.backgroundColor = "white"; // change ghost color to white
+          } else {
+            ghost.style.backgroundColor = "teal"; // change ghost color to teal
+          }
+        }
         myBoard[ghost.pos].append(ghost); // append ghost to cell
         ghost.counter--; // decrement ghost counter
         let oldPos = ghost.pos; // original ghost position
@@ -175,9 +210,16 @@ move = () => {
         if (player.pos == ghost.pos) {
           // add ghost collision detection with pacman position by comparing ghost position to pacman position
           //console.log("Ghost got you " + ghost.namer); // //console log ghost got you
-          player.lives--; // decrement player lives
+          if (player.powerCount > 0) {
+            //YOU ate the ghost
+            player.score += 100; // increment player score by 100
+            let randomRegenerateSpot = Math.floor(Math.random() * 40); // random number 0 to 39
+            ghost.pos = startPosPlayer(randomRegenerateSpot); // set ghost position back to start
+          } else {
+            player.lives--; // decrement player lives
+            gameReset(); // reset game
+          }
           updateScore(); // update lives
-          gameReset(); // reset game
         }
 
         let valGhost = myBoard[ghost.pos]; // future ghost position
@@ -214,6 +256,17 @@ move = () => {
       if (newPlace.t == 1) {
         //console.log("wall!"); // //console log wall
         player.pos = tempPos; // set player position back to previous, current position
+      }
+
+      //powerup
+      if (newPlace.t == 3) {
+        player.powerCount = 100; // set powerup count to 100
+        player.powerup = true; // set powerup to true
+        console.log("powerup!"); // //console log powerup
+        myBoard[player.pos].innerHTML = ""; // remove power pellet from cell
+        player.score += 10; // increment player score by 10
+        updateScore(); // update score
+        newPlace.t = 0; // power pellet is gone, set cell type value to 0
       }
 
       if (newPlace.t == 2) {
