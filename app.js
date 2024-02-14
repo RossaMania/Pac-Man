@@ -86,13 +86,18 @@ gameStarter = (e) => {
   g.pacman.style.display = "block"; // show pacman element once game starts.
 };
 
+boardBuilder = () => {
+  console.log(tempBoard);
+  let boxSize =
+    document.documentElement.clientHeight < document.documentElement.clientWidth
+      ? document.documentElement.clientHeight
+      : document.documentElement.clientWidth;
+  console.log(boxSize);
+};
+
 // startGame.addEventListener("click", gameStarter); // start game button event listener
 
 startGame.addEventListener("click", boardBuilder); // start game button event listener
-
-boardBuilder = () => {
-console.log(tempBoard);
-};
 
 document.addEventListener("keydown", (e) => {
   //console.log(e.code); // //console log key presses
