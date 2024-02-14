@@ -30,7 +30,7 @@ const g = {
   y: "",
   h: 100,
   size: 10,
-  ghosts: 1,
+  ghosts: 6,
   inplay: false,
 };
 
@@ -163,6 +163,12 @@ move = () => {
         } else {
           g.pacman.style.backgroundColor = "orangered"; // change pacman color to red
         }
+        if (player.powerCount <= 20) {
+          g.pacman.style.backgroundColor = "orange"; // change pacman color to orange
+        if (player.powerCount % 2) {
+          g.pacman.style.backgroundColor = "white"; // change pacman color to white
+        }
+      }
         if (player.powerCount <= 0) {
           player.powerup = false; // set powerup to false
           g.pacman.style.backgroundColor = "yellow"; // change pacman color back to yellow
