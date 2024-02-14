@@ -89,6 +89,7 @@ boardBuilder = () => {
   console.log(boxSize);
   g.h = (boxSize / g.size) - (boxSize / (g.size * 5)) // height for the elements
   console.log(g.h);
+  let tog = false;
   for (let x = 0; x < g.size; x++) {
 
     let wallz = 0;
@@ -105,6 +106,10 @@ boardBuilder = () => {
       }
 
       if (x == (g.size - 2) ) {
+        if (!tog) {
+          g.startGhost = tempBoard.length;
+          tog = true;
+        }
         val = 4;
       }
 
@@ -118,8 +123,9 @@ boardBuilder = () => {
       tempBoard.push(val);
     }
 }
-console.log(tempBoard);
+
 gameStarter();
+
 }
 
 // startGame.addEventListener("click", gameStarter); // start game button event listener
