@@ -1,6 +1,6 @@
 const board = ["pink", "blue", "limegreen", "red", "orchid", "orange"];
 
-let myBoard = [];
+const myBoard = [];
 
 const tempBoard = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
@@ -86,7 +86,13 @@ gameStarter = (e) => {
   g.pacman.style.display = "block"; // show pacman element once game starts.
 };
 
-startGame.addEventListener("click", gameStarter); // start game button event listener
+// startGame.addEventListener("click", gameStarter); // start game button event listener
+
+startGame.addEventListener("click", boardBuilder); // start game button event listener
+
+boardBuilder = () => {
+console.log(tempBoard);
+};
 
 document.addEventListener("keydown", (e) => {
   //console.log(e.code); // //console log key presses
