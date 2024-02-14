@@ -92,8 +92,10 @@ boardBuilder = () => {
   for (let x = 0; x < g.size; x++) {
     let wallz = 0;
     let val = 2;
-
-    tempBoard.push(val);
+    for (let y = 0; y<g.size; y++) {
+      let val = 2;
+      tempBoard.push(val);
+    }
 }
 console.log(tempBoard);
 }
