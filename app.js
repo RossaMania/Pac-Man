@@ -113,6 +113,15 @@ boardBuilder = () => {
         val = 4;
       }
 
+      if ((y == 3) || (y == (g.size - 4))) {
+        if (x == 1 || x == (g.size - 3)) {
+        val = 3;
+        }
+      }
+
+
+
+
       if (x == 1 || x == (g.size - 3) || y == 1 || y == (g.size - 2)) {
         val = 2;
       }
