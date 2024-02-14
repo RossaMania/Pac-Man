@@ -172,7 +172,11 @@ move = () => {
         if (tempPower == 1) {
           ghost.style.backgroundColor = ghost.defaultColor; // change ghost color back to original
         } else if (player.powerCount > 0) {
-          ghost.style.backgroundColor = "white"; // change ghost color to white
+          if (player.powerCount % 2) {
+            ghost.style.backgroundColor = "white"; // change ghost color to white
+          } else {
+            ghost.style.backgroundColor = "teal"; // change ghost color to teal
+          }
         }
         myBoard[ghost.pos].append(ghost); // append ghost to cell
         ghost.counter--; // decrement ghost counter
