@@ -42,7 +42,9 @@ const player = {
   score: 0,
   lives: 5,
   gameover: true,
-  gamewin: false
+  gamewin: false,
+  powerup: false,
+  powerCount: 0
 };
 
 const startGame = document.querySelector(".btn"); // start game button
@@ -214,6 +216,15 @@ move = () => {
       if (newPlace.t == 1) {
         //console.log("wall!"); // //console log wall
         player.pos = tempPos; // set player position back to previous, current position
+      }
+
+      //powerup
+      if (newPlace.t == 3) {
+        player.powerCount = 100; // set powerup count to 100
+        player.powerup = true; // set powerup to true
+        console.log("powerup!"); // //console log powerup
+        myBoard[player.pos].innerHTML = ""; // remove power pellet from cell
+        newPlace.t = 0; // power pellet is gone, set cell type value to 0
       }
 
       if (newPlace.t == 2) {
