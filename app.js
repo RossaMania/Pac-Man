@@ -154,6 +154,15 @@ move = () => {
     if (player.cool < 0) {
       // //console.log(ghosts);
       //placement and movement of ghosts
+      if (player.powerup) {
+        player.powerCount--; // decrement powerup count
+        if (player.powerCount <= 0) {
+          player.powerup = false; // set powerup to false
+          console.log("Lost power!"); // //console log lost power
+        }
+      }
+
+
       ghosts.forEach((ghost) => {
         myBoard[ghost.pos].append(ghost); // append ghost to cell
         ghost.counter--; // decrement ghost counter
