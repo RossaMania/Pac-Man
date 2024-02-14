@@ -251,6 +251,8 @@ move = () => {
         player.powerup = true; // set powerup to true
         console.log("powerup!"); // //console log powerup
         myBoard[player.pos].innerHTML = ""; // remove power pellet from cell
+        player.score+10; // increment player score by 10
+        updateScore(); // update score
         newPlace.t = 0; // power pellet is gone, set cell type value to 0
       }
 
