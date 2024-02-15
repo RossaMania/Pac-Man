@@ -182,11 +182,11 @@ changeDir = (enemy) => {
     enemy.dx = (gg[0] < pp[0]) ? 2 : 3;
   } // horizontal direction change based on ghost position and pacman position (left or right)
   else {
-    enemy.dx = (gg[1] < pp[1]) ? 0 : 1;
+    enemy.dx = (gg[1] < pp[1]) ? 1 : 0;
   } // vertical direction change based on ghost position and pacman position (up or down)
 
   // change ghost counter value to random number + 2 so it goes at least 2 spaces before changing direction
-  enemy.counter = Math.random() * 10 + 2;
+  enemy.counter = (Math.random() * 1) + 2;
 }
 
 move = () => {
