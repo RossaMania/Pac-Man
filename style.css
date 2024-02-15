@@ -115,6 +115,12 @@
   width: 100%;
 }
 
+.hideout {
+  background-color: #525252;
+  height: 100%;
+  width: 100%;
+}
+
 .grid {
   margin: auto;
   padding-top: 40px;
