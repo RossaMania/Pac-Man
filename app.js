@@ -249,6 +249,11 @@ move = () => {
           }
         }
 
+        if (ghost.stopped > 0) {
+          ghost.stopped--; // decrement ghost stop count
+          ghost.pos = oldPos; // set ghost position back to previous, current position
+        }
+
         if (player.pos == ghost.pos) {
           // add ghost collision detection with pacman position by comparing ghost position to pacman position
           //console.log("Ghost got you " + ghost.namer); // //console log ghost got you
