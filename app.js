@@ -255,6 +255,7 @@ move = () => {
           if (player.powerCount > 0) {
             //YOU ate the ghost
             player.score += 100; // increment player score by 100
+            ghost.stopped = 100;
             ghost.pos = g.startGhost; // set ghost position back to start
           } else {
             player.lives--; // decrement player lives
