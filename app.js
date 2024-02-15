@@ -251,7 +251,7 @@ move = () => {
 
         if (ghost.stopped > 0) {
           ghost.stopped--; // decrement ghost stop count
-          ghost.pos = oldPos; // set ghost position back to previous, current position
+          ghost.pos = startPosPlayer(g.startGhost); // set ghost position back to previous, current position
         }
 
         if (player.pos == ghost.pos) {
