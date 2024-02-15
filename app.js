@@ -178,7 +178,7 @@ changeDir = (enemy) => {
 
   let ran = Math.floor(Math.random() * 2); // random number 0 or 1
 
-  if (ran == 0) {
+  if (ran < 2) {
     enemy.dx = (gg[0] < pp[0]) ? 2 : 3;
   } // horizontal direction change based on ghost position and pacman position (left or right)
   else {
@@ -249,12 +249,18 @@ move = () => {
           }
         }
 
+        if (ghost.stopped > 0) {
+          ghost.stopped--; // decrement ghost stop count
+          ghost.pos = startPosPlayer(g.startGhost); // set ghost position back to previous, current position
+        }
+
         if (player.pos == ghost.pos) {
           // add ghost collision detection with pacman position by comparing ghost position to pacman position
           //console.log("Ghost got you " + ghost.namer); // //console log ghost got you
           if (player.powerCount > 0) {
             //YOU ate the ghost
             player.score += 100; // increment player score by 100
+            ghost.stopped = 100;
             ghost.pos = g.startGhost; // set ghost position back to start
           } else {
             player.lives--; // decrement player lives
