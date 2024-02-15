@@ -178,7 +178,7 @@ changeDir = (enemy) => {
 
   let ran = Math.floor(Math.random() * 2); // random number 0 or 1
 
-  if (ran == 0) {
+  if (ran < 2) {
     enemy.dx = (gg[0] < pp[0]) ? 2 : 3;
   } // horizontal direction change based on ghost position and pacman position (left or right)
   else {
