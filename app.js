@@ -169,25 +169,27 @@ findDir = (a) => {
 }
 
 changeDir = (enemy) => {
-
   let gg = findDir(enemy); // find ghost position in grid format (x, y)
   let pp = findDir(player); // find pacman position in grid format (x, y)
 
-  // //console.log(gg);
-  // //console.log(pp);
+  // Compare the current direction of the ghost with the direction towards the player
+  if (enemy.dx === 0 && gg[0] < pp[0]) {
+    enemy.dx = 2; // move right
+  } else if (enemy.dx === 1 && gg[0] > pp[0]) {
+    enemy.dx = 3; // move left
+  } else if (enemy.dx === 2 && gg[1] < pp[1]) {
+    enemy.dx = 0; // move down
+  } else if (enemy.dx === 3 && gg[1] > pp[1]) {
+    enemy.dx = 1; // move up
+  } else {
+    // If the ghost is not moving towards the player, randomly change direction
+    let ran = Math.floor(Math.random() * 4);
+    enemy.dx = ran;
+  }
 
-  let ran = Math.floor(Math.random() * 2); // random number 0 or 1
-
-  if (ran < 2) {
-    enemy.dx = (gg[0] < pp[0]) ? 2 : 3;
-  } // horizontal direction change based on ghost position and pacman position (left or right)
-  else {
-    enemy.dx = (gg[1] < pp[1]) ? 1 : 0;
-  } // vertical direction change based on ghost position and pacman position (up or down)
-
-  // change ghost counter value to random number + 2 so it goes at least 2 spaces before changing direction
-  enemy.counter = (Math.random() * 1) + 2;
-}
+  // change ghost counter value to random number + 10 so it goes at least 10 spaces before changing direction
+  enemy.counter = Math.random() * 1 + 10;
+};
 
 move = () => {
 
