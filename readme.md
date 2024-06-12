@@ -1,3 +1,5 @@
+Thank you for checking out my project! Connect with me on LinkedIn! https://www.linkedin.com/in/ross-clettenberg/
+
 # Pac-Man
 
 ### A browser game made with HTML, CSS, and vanilla JavaScript! This was made with the JavaScript DOM Pacman Game Project Learn JavaScript Code course from Udemy--Create a JavaScript Pacman game from scratch Vanilla JavaScript using Document Object Model DOM Game source code
