@@ -186,7 +186,7 @@ changeDir = (enemy) => {
   } // vertical direction change based on ghost position and pacman position (up or down)
 
   // change ghost counter value to random number + 2 so it goes at least 2 spaces before changing direction
-  enemy.counter = (Math.random() * 1) + 2;
+  enemy.counter = (Math.random() * 4) + 2;
 }
 
 move = () => {
