@@ -176,7 +176,7 @@ changeDir = (enemy) => {
   // //console.log(gg);
   // //console.log(pp);
 
-  let ran = Math.floor(Math.random() * 2); // random number 0 or 1
+  let ran = Math.floor(Math.random() * 8); // random number 0 or 1
 
   if (ran < 2) {
     enemy.dx = (gg[0] < pp[0]) ? 2 : 3;
