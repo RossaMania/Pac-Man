@@ -2,6 +2,26 @@ Thank you for checking out my project! Connect with me on LinkedIn! https://www.
 
 # Pac-Man
 
+## Getting Started with Docker
+
+You can run this project in a Docker container for easy setup and consistent performance. Follow these steps:
+
+1. **Build the Docker Image**
+   Run the following command in the project directory to build the Docker image:
+
+   ```
+   docker build -t pac-man .
+   ```
+2. **Run the Docker Container**
+Start the game in a Docker container with this command:
+
+```
+docker run -d -p 8080:80 pac-man
+```
+
+3. **Play the Game**
+Open your browser and navigate to http://localhost:8080 to start playing.
+
 ### A browser game made with HTML, CSS, and vanilla JavaScript! This was made with the JavaScript DOM Pacman Game Project Learn JavaScript Code course from Udemy--Create a JavaScript Pacman game from scratch Vanilla JavaScript using Document Object Model DOM Game source code
 
 ## Features
